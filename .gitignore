@@ -1,0 +1,69 @@
+# .gitignore
+
+# Ignore large files
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.iso
+
+# Ignore pth files
+*.pth
+
+# Ignore log files
+*.log
+
+# Ignore all kinds of binary and other undesired file types
+*.bin
+*.o
+*.obj
+*.so
+*.exe
+*.dll
+*.lib
+*.a
+*.pdb
+*.idb
+*.ilk
+*.gho
+*.ncb
+*.bak
+*.scc
+*.vspscc
+*.user
+*.suo
+*.cache
+*.pyc
+*.pyo
+
+# Ignore checkpoints
+*.ckpt
+*checkpoint*
+
+# Ignore directories
+node_modules/
+__pycache__/
+.idea/
+.vscode/
+*.egg-info/
+
+# Ignore data folders
+/data/*
+!data/.gitkeep
+
+# Ignore MacOS system files
+.DS_Store
+
+*.jpg
+*.png
+*.json
+*.txt
+*.bash
+*.sh
+# *.yaml
+*.csv
+*.pt
+*.pkl
+
+wandb/*
