@@ -35,7 +35,7 @@ Since the Pretrained MiniGPT-4 Aligned Checkpoint is small, we already download 
 
 **3. Download MiniGPT-5 Checkpoint**
 
-Since our model is trained with two stages **(Stage 1: Unimodal Alignment Stage, Stage 2: Mulimodal Learning Stage)**, we provide both two-stage checkpoints here:
+Since our model is trained with two stages **(Stage 1: Unimodal Alignment Stage, Stage 2: Multimodal Learning Stage)**, we provide both two-stage checkpoints here:
 
 |                                          Stage 1: CC3M                                           |                                          Stage 2: VIST                                          |                            Stage 2: MMDialog                             |
 :------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:
@@ -79,7 +79,7 @@ export CC3M_FOLDER=datasets/CC3M
 python3 metric.py --test_weight stage1_cc3m.ckpt
 ```
 
-**2. Stage 2: Mulimodal Learning Stage (VIST) evaluation**
+**2. Stage 2: Multimodal Learning Stage (VIST) evaluation**
 
 Model will take the previous multimodal story sequences and generate either unimodal or multimodal ouputs. Here, the default code is about mulitimodal input & image generation. To test other settings, please remove the *not test* condition in [Line 280](dataloader.py#280).
 
@@ -100,7 +100,7 @@ Calculate Metric:
 python3 metric.py --test_weight stage2_vist.ckpt
 ```
 
-**3. Stage 2: Mulimodal Learning Stage (MMDialog) evaluation**
+**3. Stage 2: Multimodal Learning Stage (MMDialog) evaluation**
 
 Model will take previous turn multimodal inputs and generate multimodal response for multimodal conversations.
 
