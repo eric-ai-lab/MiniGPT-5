@@ -46,7 +46,7 @@ Stage 2 needs the pretrained weights in Stage 1, so always download Stage 1 weig
 Please download these weights into a single folder, and we will call this folder as ***WEIGHT_FOLDER*** in the following sections.
 
 ### Demo
-We provide a [python file](examples/playground.py) to try our model. This file will generate multimodal ouputs under the [example folder](examples/) by taking a two-turn multimodal inputs.
+We provide a [python file](examples/playground.py) to try our model. This file will generate multimodal outputs under the [example folder](examples/) by taking a two-turn multimodal inputs.
 
 ```bash
 cd examples
@@ -81,7 +81,7 @@ python3 metric.py --test_weight stage1_cc3m.ckpt
 
 **2. Stage 2: Multimodal Learning Stage (VIST) evaluation**
 
-Model will take the previous multimodal story sequences and generate either unimodal or multimodal ouputs. Here, the default code is about mulitimodal input & image generation. To test other settings, please remove the *not test* condition in [Line 280](dataloader.py#280).
+Model will take the previous multimodal story sequences and generate either unimodal or multimodal outputs. Here, the default code is about multimodal input & image generation. To test other settings, please remove the *not test* condition in [Line 280](dataloader.py#280).
 
 Generation:
 ```bash
