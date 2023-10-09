@@ -236,7 +236,7 @@ class VISTDataset(CC3MDataset):
         system_prompt1="Give the following images in <Img>ImageContent</Img> format. "\
            "You will be able to see the images once I provide it to you. Please understanding images and generate story."
         human_prompts1 = [
-            "###Human:{prompt} Generate a image with the scene description: {step_text} ###Assistant:",
+            "###Human:{prompt} Generate an image with the scene description: {step_text} ###Assistant:",
             "###Human:{prompt} the scene description: {step_text} ###Assistant:",
         ]
         human_prompts2 = [
