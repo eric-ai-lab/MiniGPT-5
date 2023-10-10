@@ -454,8 +454,8 @@ def create_runner_config_validator():
     validator.add_argument(
         "inference_method",
         type=str,
-        choices=["genearte", "rank"],
-        help="""Inference method to use for question answering. If rank, requires a answer list.""",
+        choices=["generate", "rank"],
+        help="""Inference method to use for question answering. If rank, requires an answer list.""",
     )
 
     # ====== model specific ======
