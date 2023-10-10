@@ -42,7 +42,7 @@ gradio-client==0.0.8
 wandb
 torch>=2.0
 torchvision>=0.15.0
-transformers>=4.31.0
+transformers==4.31.0
 xformers
 accelerate>=0.20.3
 opencv-python
