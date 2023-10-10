@@ -174,7 +174,7 @@ class MiniGPT5(MiniGPT4):
         return inputs_llama, atts_llama
     
     def input_warp(self, input_ids, attention_mask, labels=None, input_image=None, input_image_feature=None):
-        assert input_ids.shape[0] == 1, "wrapping each sample individually"
+        assert input_ids.shape[0] == 1, "warping each sample individually"
 
         bos = torch.ones([1, 1],
                         dtype=input_ids.dtype,
