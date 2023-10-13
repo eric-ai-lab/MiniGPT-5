@@ -1,5 +1,7 @@
 # MiniGPT-5
-[Kaizhi Zheng](https://kzzheng.github.io/)* , [Xuehai He](https://scholar.google.com/citations?user=kDzxOzUAAAAJ&hl=en)* , [Xin Eric Wang](https://eric-xw.github.io/)
+[Kaizhi Zheng](https://kzzheng.github.io/)* , [Xuehai He](https://scholar.google.com/citations?user=kDzxOzUAAAAJ&hl=en)* , [Xin Eric Wang](https://eric-xw.github.io/) 
+
+University of California, Santa Cruz
 
 <a href='https://arxiv.org/abs/2310.02239'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 
@@ -156,7 +158,7 @@ python3 train_eval.py --is_training True
                         --gpus 0
 ```
 
-If you're using MiniGPT-5 in your research or applications, please cite using this BibTeX:
+## If you find MiniGPT-5 useful in your research or applications, please cite as below:
 ```bibtex
 @misc{zheng2023minigpt5,
       title={MiniGPT-5: Interleaved Vision-and-Language Generation via Generative Vokens}, 
