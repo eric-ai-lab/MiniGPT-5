@@ -1,11 +1,9 @@
-# MiniGPT-5
+# MiniGPT-5: Interleaved Vision-and-Language Generation via Generative Vokens
 [Kaizhi Zheng](https://kzzheng.github.io/)* , [Xuehai He](https://scholar.google.com/citations?user=kDzxOzUAAAAJ&hl=en)* , [Xin Eric Wang](https://eric-xw.github.io/) 
 
 University of California, Santa Cruz
 
 <a href='https://arxiv.org/abs/2310.02239'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
-
-Official implementation of paper "MiniGPT-5: Interleaved Vision-and-Language Generation via Generative Vokens"
 
 ![teaser](figs/teaser.png)
 
