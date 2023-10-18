@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 **2. Prepare the pretrained weights**
 
-Our model is based on the pretrained [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4). Please download [Vicuna V0 7B](https://huggingface.co/Vision-CAIR/vicuna-7b/tree/main) weights. Then, set the path to the vicuna weight in the [model config file](minigpt4/configs/models/minigpt4.yaml#L16) at Line 16.
+Our model is based on the pretrained [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4) (inluding [Vicuna](https://github.com/lm-sys/FastChat) and [BLIP-2](https://github.com/salesforce/LAVIS)). Please download [Vicuna V0 7B](https://huggingface.co/Vision-CAIR/vicuna-7b/tree/main) weights. Then, set the path to the vicuna weight in the [model config file](minigpt4/configs/models/minigpt4.yaml#L16) at Line 16.
 
 Since the Pretrained MiniGPT-4 Aligned Checkpoint is small, we already download in config folder, and the model path is set in [config file](config/minigpt4.yaml#10) at Line 10.
 
