@@ -38,7 +38,7 @@ class CC3MDataset(Dataset):
                 "help me to generate this image:",
                 "generate image with according to caption:",
                 "according to caption, generate image:",
-                "a image with caption:",
+                "an image with caption:",
                 "can you visualize this caption:",
             ]
 
