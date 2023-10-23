@@ -171,7 +171,7 @@ class Chat:
         return output_text, output_token.cpu().numpy()
 
     def upload_img(self, image, conv, img_list):
-        if isinstance(image, str):  # is a image path
+        if isinstance(image, str):  # is an image path
             raw_image = Image.open(image).convert('RGB')
             image = self.vis_processor(raw_image).unsqueeze(0).to(self.device)
         elif isinstance(image, Image.Image):
