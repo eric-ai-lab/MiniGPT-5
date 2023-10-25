@@ -3,7 +3,7 @@
 
 University of California, Santa Cruz
 
-<a href='https://arxiv.org/abs/2310.02239'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+<a href='https://arxiv.org/abs/2310.02239'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://eric-ai-lab.github.io/minigpt-5.github.io/'><img src='https://img.shields.io/badge/Project-Page-green'></a>
 
 ![teaser](figs/teaser.png)
 
