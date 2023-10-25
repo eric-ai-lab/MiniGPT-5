@@ -129,7 +129,7 @@ def concat_datasets(datasets):
     It supports may-style datasets and DataPipeline from WebDataset. Currently, does not support
     generic IterableDataset because it requires creating separate samplers.
 
-    Now only supports conctenating training datasets and assuming validation and testing
+    Now only supports concatenating training datasets and assuming validation and testing
     have only a single dataset. This is because metrics should not be computed on the concatenated
     datasets.
 
