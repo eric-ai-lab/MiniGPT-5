@@ -155,6 +155,10 @@ python3 train_eval.py --is_training True
                         --model_save_name stage2_vist_{epoch}-{step}
                         --gpus 0
 ```
+### All Thanks To Our Contributors:
+<a href="https://github.com/eric-ai-lab/MiniGPT-5/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=eric-ai-lab/MiniGPT-5" />
+</a>
 
 ## If you find MiniGPT-5 useful in your research or applications, please cite as below:
 ```bibtex
