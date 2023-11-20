@@ -170,7 +170,7 @@ class MiniGPT5(MiniGPT4):
                 )
 
                 inputs_llama = self.llama_proj(query_output.last_hidden_state)
-                atts_llama = torch.ones(inputs_llama.size()[:-1], dtype=torch.long).to(image.device)
+                atts_llama = torch.ones(inputs_llama.size()[:-1], dtype=torch.long).to(device)
         return inputs_llama, atts_llama
     
     def input_warp(self, input_ids, attention_mask, labels=None, input_image=None, input_image_feature=None):

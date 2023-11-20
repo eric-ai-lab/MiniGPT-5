@@ -40,7 +40,7 @@ if __name__ == "__main__":
     minigpt5 = MiniGPT5_Model.load_from_checkpoint(stage1_ckpt, strict=False, map_location="cpu", encoder_model_config=model_args, **vars(training_args))
     finetuned_state_dict = torch.load(stage2_ckpt, map_location="cpu")['state_dict']
     minigpt5.load_state_dict(finetuned_state_dict, strict=False)
-    minigpt5.to("cuda:0")
+    minigpt5.to(torch.device("cuda:0"), torch.float16)
     minigpt5.eval()
     input_images = None
     input_image_path = [os.path.join(current_dir, '000000005.jpg'), os.path.join(current_dir, '000000007.jpg')]

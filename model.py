@@ -161,10 +161,14 @@ class MiniGPT5_Model(LightningModule):
                         data = [[self.global_step, utterance, text_out, wandb.Image(image_out), gt_text]]
                         columns = ["step", "input_utterance", "text_out", "img_out", "gt_text"]
                     else:
-                        predicted_images_nl = self.image_pipeline(prompt= captions[0], use_original=True).images[0]
-                        data = [[self.global_step, utterance, text_out, wandb.Image(image_out), captions[0], wandb.Image(predicted_images_nl)]]
-                        columns = ["step", "input_utterance", "text_out", "img_out", "caption", "caption_out"]
-                        predicted_images_nl.save(os.path.join("train_eval", f'{self.global_step}_nl.png'))
+                        if captions[0] is not None:
+                            predicted_images_nl = self.image_pipeline(prompt= captions[0]).images[0]
+                            data = [[self.global_step, utterance, text_out, wandb.Image(image_out), captions[0], wandb.Image(predicted_images_nl)]]
+                            columns = ["step", "input_utterance", "text_out", "img_out", "caption", "caption_out"]
+                            predicted_images_nl.save(os.path.join("train_eval", f'{self.global_step}_nl.png'))
+                        else:
+                            data = [[self.global_step, utterance, text_out, wandb.Image(image_out), gt_text]]
+                            columns = ["step", "input_utterance", "text_out", "img_out", "gt_text"]
                     self.logger.log_table(key="sample", data=data, columns=columns)
                     image_out.save(os.path.join("train_eval", f'{self.global_step}.png'))
                 else:
