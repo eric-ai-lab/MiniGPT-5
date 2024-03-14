@@ -178,7 +178,7 @@ if __name__ == "__main__":
         resume = training_args.resume
         trainer.fit(model, train_dataloader, val_dataloader, ckpt_path=resume)
     else:
-        model.image_pipeline.enable_xformers_memory_efficient_attention()
+        # model.image_pipeline.enable_xformers_memory_efficient_attention()
         output_vis_processor = transforms.Compose(
                 [
                     transforms.Resize(512, interpolation=transforms.InterpolationMode.BILINEAR),

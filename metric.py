@@ -404,7 +404,8 @@ def mmdialog_calculate_metrics(pred_folder, calculate_instace_level=True):
         else:
             need_image = False
         
-        if '[IMG0]' in pred_out:
+        # if '[IMG0]' in pred_out:
+        if predicted_images_ft is not None:
             generate_image = True
         else:
             generate_image = False
@@ -415,8 +416,7 @@ def mmdialog_calculate_metrics(pred_folder, calculate_instace_level=True):
             pred_out = ''
         if all(c in string.punctuation for c in gt_out):
             gt_out = ''
-        gt_image = to_pil(gt_image)
-        task_name, step_id = task_name.split('_')
+        task_name, step_id = task_name.split('-')[0].split('_')
         step_id = int(step_id)
         if task_name not in task_dicts:
             task_dicts[task_name] = OrderedDict()
@@ -455,6 +455,7 @@ def mmdialog_calculate_metrics(pred_folder, calculate_instace_level=True):
             inception.update(totensor(predicted_images_ft).unsqueeze(0).cuda())
 
         if need_image and generate_image:
+            gt_image = to_pil(gt_image.float())
             gt_image_features = clip_evaluator.get_image_features(gt_image)
             predicted_images_ft_features = clip_evaluator.get_image_features(predicted_images_ft)
             clip_i_similarity = (gt_image_features @ predicted_images_ft_features.T).mean().item()

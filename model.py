@@ -1,6 +1,8 @@
 import os
 import random
 from typing import Any, Optional, Dict, List
+from PIL import Image
+from lightning.pytorch.callbacks.callback import Callback
 
 import torch
 from lightning.pytorch import LightningModule
@@ -120,6 +122,9 @@ class MiniGPT5_Model(LightningModule):
             #     p.requires_grad = False
             self.t2i_decoder_prompt.requires_grad = False
 
+    def on_train_start(self) -> None:
+        self.image_pipeline.to(self.device, PRECISION)
+    
     def training_step(self, batch, batch_idx):
         for key in batch.keys():
             if type(batch[key]) == list:
@@ -295,15 +300,14 @@ class MiniGPT5_Model(LightningModule):
                 return {'loss': loss, 'text_loss': text_loss, 'image_loss': image_loss}
 
     def generate(self, utterance, input_image=None, task_name=None, max_new_tokens=256, force_generation=False, guidance_scale=7.5) -> Any:
-        self.image_pipeline.to(self.device, PRECISION)
         if input_image is None:
             input_image = torch.zeros((1, 3, 224, 224), dtype=PRECISION).to(self.device)
         if type(utterance) == str:
             utterance = [utterance]
         llm_sample_outputs = self.model.predict(utterance, input_image, max_new_tokens=max_new_tokens, temperature=1.0, repetition_penalty=2.0, task_name=task_name, force_generation=force_generation)
         new_tokens = llm_sample_outputs['sequences'][0]
-        pred_out = self.tokenizer.decode(new_tokens)
-        print(f'Generated text: {pred_out}')
+        pred_out = self.tokenizer.decode(new_tokens, skip_special_tokens=False)
+        # print(f'Generated text: {pred_out}')
 
         last_hidden_state = llm_sample_outputs['hidden_states']
         special_token_index = (new_tokens == self.output_img_id).nonzero()
@@ -326,13 +330,15 @@ class MiniGPT5_Model(LightningModule):
                 predicted_images_ft = self.image_pipeline(prompt_embeds = mapping_feature, guidance_scale=guidance_scale, use_original=True).images[0]
             
         return pred_out, predicted_images_ft
-  
-    def predict_step(self, batch: Any, batch_idx: int, dataloader_idx: int = 0) -> Any:
+    
+    def on_predict_start(self) -> None:
         self.image_pipeline.to(self.device, PRECISION)
 
+    def predict_step(self, batch: Any, batch_idx: int, dataloader_idx: int = 0) -> Any:
         input_images = batch['input_images'][0]
         gt_image = batch['output_image'][0]
         input_utterance = batch['source'][0]
+        input_images_orig = batch['original_images'][0]
         gt_out = batch['target'][0]
         captions = batch['caption'][0]
         task_name = batch['task_name'][0]
@@ -349,16 +355,26 @@ class MiniGPT5_Model(LightningModule):
                 if captions is not None:
                     predicted_images_nl = self.image_pipeline(prompt = captions).images[0]
                 try:
+                    image_idx = 0
                     if "###Human" in input_utterance and "###Assistant" in input_utterance:
-                        input_texts = input_utterance.split("###Human:")[1].split("###Assistant:")[0].replace("/n","")
-                        if "<Img><ImageHere></Img>" in input_texts:
-                            input_texts = input_texts.split("<Img><ImageHere></Img>")
-                        else:
-                            input_texts = [input_texts]
+                        new_input_texts = []
+                        new_input_images = []
+                        valid_input_texts = input_utterance.split("###Human:")[1:]
+                        for text in valid_input_texts:
+                            text_list = text.split("###Assistant:")
+                            for t in text_list:
+                                if len(t) > 0:
+                                    new_input_texts.append(t)
+                                    if "<Img><ImageHere></Img>" in t:
+                                        new_input_images.append(input_images_orig[image_idx])
+                                        image_idx += 1
+                                    else:
+                                        new_input_images.append(Image.new('RGB', (256, 256), color = (0, 0, 0)))
                     else:
-                        input_texts = [input_utterance]
+                        new_input_texts = [input_utterance]
+                        new_input_images = input_images_orig
                     # convert input images to PIL images
-                    plot_images_and_text(predicted_images_ft, predicted_images_nl, gt_image, pred_out, gt_out, save_dir_cpr, task_name, input_texts, batch['original_images'][0])
+                    plot_images_and_text(predicted_images_ft, predicted_images_nl, gt_image, pred_out, gt_out, save_dir_cpr, task_name, new_input_texts, new_input_images)
                 except:
                     print("Error in saving images")
 

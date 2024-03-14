@@ -13,7 +13,7 @@ model:
   num_query_token: 32
 
   # Vicuna
-  llama_model: "/data2/zhengkz/vicuna_weights/working_weights_7b"
+  llama_model: "Vision-CAIR/vicuna-7b"
 
   # generation configs
   prompt: ""

@@ -49,8 +49,8 @@ class MiniGPT5(MiniGPT4):
         self.num_new_tokens = self.llama_tokenizer.add_special_tokens(
             {   
                 # "pad_token": DEFAULT_PAD_TOKEN,
-                "eos_token": DEFAULT_EOS_TOKEN,
-                "bos_token": DEFAULT_BOS_TOKEN,
+                # "eos_token": DEFAULT_EOS_TOKEN,
+                # "bos_token": DEFAULT_BOS_TOKEN,
                 # "unk_token": DEFAULT_UNK_TOKEN,
                 "additional_special_tokens": all_img_tokens
             }
@@ -114,6 +114,9 @@ class MiniGPT5(MiniGPT4):
             self.llama_model = get_peft_model(self.llama_model, self.lora_config)
             self.llama_model.base_model.model.model.embed_tokens.original_module.weight.requires_grad = False
             self.llama_model.base_model.model.lm_head.original_module.weight.requires_grad = False
+            for name, param in self.llama_model.named_parameters():
+                if "lora" in name:  # Identify LoRA parameters by name
+                    param.data = param.data.to(dtype=torch.float32)
         else:
             for name, param in self.llama_model.named_parameters():
                 if "lm_head" in name or "embed_tokens" in name:
