@@ -22,7 +22,7 @@ Clone our repo and create a new python environment.
 ```bash
 git clone https://github.com/eric-ai-lab/MiniGPT-5.git
 cd MiniGPT-5
-conda create -n minigpt5 python=3.9
+conda create -n minigpt5 python=3.10
 conda activate minigpt5
 pip install -r requirements.txt
 ```

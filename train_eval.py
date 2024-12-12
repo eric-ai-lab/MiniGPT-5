@@ -18,7 +18,7 @@ from constants import *
 
 from lightning.pytorch.callbacks import BasePredictionWriter
 from model import MiniGPT5_Model, MiniGPT5_InputProcessor
-from metric import *
+# from metric import *
 
 class PredWriter(BasePredictionWriter):
     def write_on_epoch_end(

@@ -19,7 +19,7 @@ import torch.nn.functional as F
 from utils import plot_images_and_text
 from constants import *
 from diffusers import StableDiffusionPipeline
-from diffusers.models.vae import DiagonalGaussianDistribution
+from diffusers.models.autoencoders.vae import DiagonalGaussianDistribution
 
 class MiniGPT5_InputProcessor(object):
 
