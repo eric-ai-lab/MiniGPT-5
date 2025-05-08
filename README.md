@@ -39,7 +39,7 @@ Since our model is trained with two stages **(Stage 1: Unimodal Alignment Stage,
 
 |                                          Stage 1: CC3M                                           |                                          Stage 2: VIST                                          |                            Stage 2: MMDialog                             |
 :------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:
- [Download](https://drive.google.com/file/d/1y-VUXubIzFe0iq5_CJUaE3HKhlrdn4n2/view?usp=sharing) | [Download](https://drive.google.com/file/d/1rjTsKwF8_pqcNLbdZdurqZLSpKoo2K9F/view?usp=drive_link) | [Download](https://drive.google.com/file/d/1uo0LU-X11F1FIPC2h62s4Uzl6rBSAoQH/view?usp=sharing)
+ [Download](https://huggingface.co/KZ-ucsc/MiniGPT5/tree/main) | [Download](https://huggingface.co/KZ-ucsc/MiniGPT5/tree/main) | [Download](https://huggingface.co/KZ-ucsc/MiniGPT5/tree/main)
 
 Stage 2 needs the pretrained weights in Stage 1, so always download Stage 1 weights first. 
 
